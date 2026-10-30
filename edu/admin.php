@@ -1,0 +1,733 @@
+<?php 
+    include 'functions/main.functions.php'; 
+    $user_login = new USER();
+?>
+
+<?php //if(isset($_GET[theictclass])) { ?>
+
+<?php
+
+if($user_login->is_logged_in()!="")
+{
+    if($_SESSION['type'] == '1') { $user_login->redirect('admin_teachers_list.php'); }
+    if($_SESSION['type'] == '2') { $user_login->redirect('teachers_add_lesson.php'); }
+    if(isset($_GET[view])) { 
+      if($_SESSION['type'] == '3') { $user_login->redirect('lessons.php?view='.$_GET[view].''); }
+    }if(!isset($_GET[view])) { 
+      if($_SESSION['type'] == '3') { $user_login->redirect('select_your_teacher.php'); }
+    }
+}
+
+if(isset($_POST['sign_in']))
+{
+    $email = trim($_POST['username']);
+    $upass = trim($_POST['password']);
+    
+    if($user_login->login($email,$upass))
+    {
+        if($_SESSION['type'] == '1') { $user_login->redirect('admin_teachers_list.php'); }
+        if($_SESSION['type'] == '2') { $user_login->redirect('teachers_add_lesson.php'); }
+        if(isset($_GET[view])) { 
+          if($_SESSION['type'] == '3') { $user_login->redirect('lessons.php?view='.$_GET[view].''); }
+        }if(!isset($_GET[view])) { 
+          if($_SESSION['type'] == '3') { $user_login->redirect('select_your_teacher.php'); }
+        }
+    }
+}
+
+
+?>
+
+<?php 
+if(isset($_POST['register_now']))
+{
+  
+      
+      
+      
+    $uname = mysqli_real_escape_string($connect, $_POST['name']);
+    $uname2 = mysqli_real_escape_string($connect, $_POST['last']);
+    $email = mysqli_real_escape_string($connect, $_POST['email']);
+    $upass = mysqli_real_escape_string($connect, $_POST['password']);
+    $mobile = mysqli_real_escape_string($connect, $_POST['mobile']);
+    
+    $whatsapp_or_viber = mysqli_real_escape_string($connect, $_POST['whatsapp_or_viber']);
+    $subject = mysqli_real_escape_string($connect, $_POST['subject']);
+    $grade = mysqli_real_escape_string($connect, $_POST['grade']);
+    $location = mysqli_real_escape_string($connect, $_POST['location']);
+    $school = mysqli_real_escape_string($connect, $_POST['school']);
+    $batch = mysqli_real_escape_string($connect, $_POST['batch']);
+
+
+
+
+if($_POST[grade] == 'Tutor' OR $_POST[grade] == 'Trainer' ) { 
+    $type ='2'; 
+    $userStatus ='N';
+  } 
+
+if($_POST[grade] == 'Student') { 
+    $type ='3';
+    $userStatus ='Y';
+  } 
+  
+if($_POST[grade] == 'Learner') { 
+    $type ='3';
+    $userStatus ='Y';
+  } 
+  
+if($_POST[grade] == 'Institute') { 
+    $type ='2';
+    $userStatus ='N';
+  } 
+  
+    
+    $code = md5(uniqid(rand()));
+    
+    $sql = "SELECT * FROM tbl_users WHERE userEmail='$email'";
+    $result = mysqli_query($connect, $sql);
+    $pra = mysqli_fetch_array($result);
+    
+    if(mysqli_num_rows($result) > 0)
+    { 
+        $msg = "
+              <div class='alert alert-danger'>
+                <button class='close' data-dismiss='alert'>&times;</button>
+                    <strong>Sorry !</strong>  email already exists , Please Try another one
+              </div>
+              ";
+    }
+    else
+    {
+
+            
+        $password = md5($upass);
+        $result = mysqli_query($connect, "INSERT INTO tbl_users VALUES (NULL, '$uname', '$uname2', '$email', '$password', '$userStatus', '$code', '$mobile', '$whatsapp_or_viber', '$_POST[selected_ol_al_grade]', '$_POST[selected_medium]', '$_POST[selected_subject]', '$subject', '$grade', '$location', '$_POST[selected_package]', '$school', '$batch', '$type', '', '$_POST[institute_id]', 'N'   ,'' , '$telegram', '$real_email', '$institute_name', '$std_city', '$time', '$date' , '', '' )");
+        //mysqli_query($connect, $sql2);
+
+        if($result) 
+        { 
+
+
+
+
+if($_POST[grade] == 'Tutor' OR $_POST[grade] == 'Trainer' OR $_POST[grade] == 'Institute' ) { 
+
+
+               
+                       
+    $sql_new = "SELECT * FROM tbl_users WHERE userName='$uname' AND userEmail ='$email' AND mobile = '$mobile' AND grade = '$grade' ";
+    $result_new = mysqli_query($connect, $sql_new);
+    $pra_new = mysqli_fetch_array($result_new);
+
+
+
+                $to = $_POST['email'] . ', ' . $site_info_mail_address;
+                $subject = 'Account Acivation - '.$site_website_name.' ('.$pra_new[userID].') ';
+                $message = '  
+                            
+Hi '.$_POST['name'].', <br><br>
+<strong>Welcome to '.$site_website_name.' and thank you for registering yourself with us.</strong><br><br>
+You are just one step behind to activate the account!><br><br>
+Use the link below to activate your account to access our Programs and courses.><br><br>
+Please note you may not be able to login to your account until you have activated the account.><br><br>
+Click below tab to activate Your Account><br>
+
+<strong><a href="https://'.$actual_domain_without_http.'/activate.php?code='.$pra_new[tokenCode].'">Activate Your Account</strong><br><br>
+Enjoy learning with '.$site_website_name.'.<br><br>
+If you need any assistance, please use our web chat or email to '.$site_info_mail_address.'.<br><br><br><br>
+This is an automated email generated by '.$site_website_name.' Admin to verify the authenticity of the e-mail user.
+
+                            ';
+                $from = $site_info_mail_address;
+                $headers = "Content-type: text/html; charset=windows-874\n"; // or UTF-8 // 
+                $headers .= "From:" . $from;
+                mail($to,$subject,$message,$headers);
+
+            
+    
+    
+    
+    
+    
+            $msg .= "
+                    <div class='alert alert-success' style=' font-size: initial; ;'>
+                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <strong>Success!</strong>  You account is Created Successfull! <br>  Thank you for Registering with us, Please check your Email and Acviate your Account. <br> <br>";
+
+                        $sql = "SELECT * FROM tbl_users WHERE userEmail='$_POST[email] AND '1' = '2'";
+                        $result = mysqli_query($connect, $sql);
+                        $pra = mysqli_fetch_array($result);
+                        $num_rows = mysqli_num_rows($result);
+
+                                        if ($num_rows != '0' OR $num_rows != ''  ) {  } 
+                                            //$msg .=' <p style=" font-size: initial;  ">When your payment is verified by the "'.$site_website_name." Your account will be activated. </p> '; 
+                                       ?>
+
+<?php 
+                    $msg .=' </div>';
+
+
+
+
+
+
+} 
+
+
+if($_POST[grade] == 'Learner'  ) { 
+
+
+
+
+
+               
+                       
+    $sql_new = "SELECT * FROM tbl_users WHERE userName='$uname' AND userEmail ='$email' AND mobile = '$mobile' AND grade = '$grade' ";
+    $result_new = mysqli_query($connect, $sql_new);
+    $pra_new = mysqli_fetch_array($result_new);
+
+
+
+            $to = $_POST['email'];
+            $subject = 'New Registration - '.$site_website_name.' ('.$pra_new[userID].') ';
+            $message = ' 
+                            
+Hi '.$_POST['name'].', <br><br>
+<strong>Welcome to '.$site_website_name.' and thank you for registering yourself with us.</strong><br><br>
+You are just one step behind to activate the account!<br><br>
+
+Enjoy learning with '.$site_website_name.'.<br><br>
+If you need any assistance, please use our web chat or email to '.$site_info_mail_address.'.<br><br><br><br>
+This is an automated email generated by '.$site_website_name.' Admin to verify the authenticity of the e-mail user.
+
+                            ';
+            $from = $site_info_mail_address;
+            $headers = "Content-type: text/html; charset=windows-874\n"; // or UTF-8 // 
+            $headers .= "From:" . $from;
+            mail($to,$subject,$message,$headers);
+
+          
+  
+  
+  
+  
+  
+            $msg = "
+                    <div class='alert alert-success'>
+                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <strong>Success!</strong>  Thank you for Registering with us<br> <br>Please check your Email and Acviate your Account. 
+                    </div>
+
+                    ";
+
+
+
+} 
+
+
+
+
+
+
+
+
+if($_POST[grade] == 'Student'  ) { 
+
+
+
+
+
+               
+                       
+    $sql_new = "SELECT * FROM tbl_users WHERE userName='$uname' AND userEmail ='$email' AND mobile = '$mobile' AND grade = '$grade' ";
+    $result_new = mysqli_query($connect, $sql_new);
+    $pra_new = mysqli_fetch_array($result_new);
+
+
+
+            $to = $_POST['email'];
+            $subject = 'New Registration - '.$site_website_name.' ('.$pra_new[userID].') ';
+            $message = ' 
+                            
+Hi '.$_POST['name'].', <br><br>
+<strong>Welcome to '.$site_website_name.' and thank you for registering yourself with us.</strong><br><br>
+You are just one step behind to activate the account!<br><br>
+
+Enjoy learning with '.$site_website_name.'.<br><br>
+If you need any assistance, please use our web chat or email to '.$site_info_mail_address.'.<br><br><br><br>
+This is an automated email generated by '.$site_website_name.' Admin to verify the authenticity of the e-mail user.
+
+                            ';
+            $from = $site_info_mail_address;
+            $headers = "Content-type: text/html; charset=windows-874\n"; // or UTF-8 // 
+            $headers .= "From:" . $from;
+            mail($to,$subject,$message,$headers);
+
+          
+  
+  
+  
+  
+  
+            $msg = "
+                    <div class='alert alert-success'>
+                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <strong>Success!</strong>  Thank you for Registering with us<br> <br>You can Login Now
+                    </div>
+
+                    ";
+
+
+
+    $email = trim($_POST['email']);
+    $upass = trim($_POST['password']);
+    
+    if($user_login->login($email,$upass))
+    {
+        if($_SESSION['type'] == '1') { $user_login->redirect('admin_teachers_list.php'); }
+        if($_SESSION['type'] == '2') { $user_login->redirect('teachers_add_lesson.php'); }
+        if(isset($_GET[view])) { 
+          if($_SESSION['type'] == '3') { $user_login->redirect('lessons.php?view='.$_GET[view].''); }
+        }if(!isset($_GET[view])) { 
+          if($_SESSION['type'] == '3') { $user_login->redirect('select_your_teacher.php'); }
+        }
+    }
+
+
+    
+
+} 
+
+
+
+
+
+
+
+
+
+        }
+        else
+        {
+            echo "sorry , Query could no execute...";
+        }       
+    }
+    
+    
+
+
+
+
+}
+
+
+
+?>
+
+
+<!doctype HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- viewport meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<?php echo $site_meta_description; ?>">
+    <meta name="keywords" content="<?php echo $site_keywords; ?>">
+       <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <title>Login to <?php echo $site_title; ?></title>
+
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+    <link rel="stylesheet" href="style2.css">
+    <?php metas(); ?>
+</head>
+<body class="preload">
+    
+   
+   <!--header-area start-->
+   <?php real_header(); ?>
+   <!--header-area end--> 
+    
+
+
+    
+
+
+
+    
+    
+    <section class="hero-area4 bgimage">
+        
+        <div class="hero-content content_above" style="padding: 50px 0 50px 0;">
+                            <div class="content-wrapper">
+                               
+                <div class="container featured-products2  p-top-10 p-bottom-120">
+                            
+
+
+
+
+
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="row">
+                               
+                                 <div class="col-lg-1 mt-sm-0"></div>
+                                
+                                <div class="col-lg-4 col-md-12 p-top-0">
+                                    
+                              <?php echo $msg_x; ?>
+                    
+                        
+                    
+                    
+                        
+                    
+
+                    
+
+                    <form action="" method="post">
+                        <div class="cardify signup_form" style="background: white; border-radius: 10px; padding: 20px;box-shadow: 12.5px 21.651px 49px 0px rgba( 58, 74, 88, .10 ); ">
+                            <!-- end .login_header -->
+
+
+<?php 
+        if(isset($_GET['inactive']))
+        {       
+            ?>
+            <div class='alert alert-danger'>
+                <button class='close' data-dismiss='alert'>&times;</button>
+                <strong>Sorry!</strong>  When your Email is verified, Your account will be activated. <br><br>Please check your Email & Activate your Account.
+            </div>
+            <?php
+        }
+        ?>
+        <form class="form-signin" method="post" autocomplete="off">
+        <?php
+        if(isset($_GET['error']))
+        {
+            ?>
+            <div class='alert alert-danger'>
+                <button class='close' data-dismiss='alert'>&times;</button>
+                <strong>Wrong Details!</strong> 
+            </div>
+            <?php
+        }
+        ?>
+
+
+
+<div class="section-title">
+                  <h3>Login Now</h3>
+                  <p style="    margin-top: 50px;">We are the first Digital Campus in Sri Lanka which covers all-around digital learning solutions for any individual or institution.</p>
+                </div>
+
+
+
+
+
+                            <div class="login--form">
+                                <div class="form-group">
+                                    
+                                    <input type="email" class="text_field" placeholder="Email Address" name="username" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    
+                                    <input type="Password" class="text_field" placeholder="Password" name="password" required="">
+                                </div>
+
+                              <div class="row">
+                      
+                      
+                      <div class="col-lg-6 mt-0">
+                         <input class="btn btn--md register_btn btn-common" type="submit" name="sign_in" value="Login Now" >
+                      </div>
+                      <div class="col-lg-6 mt-0" style=" text-align: right; "> <a href="forgot_password.php">Forgot Password?</a> </div>
+                    </div>
+                    
+                    
+                               
+                                
+                                
+                      
+                      
+
+                                
+                            </div><!-- end .login--form -->
+                        </div><!-- end .cardify -->
+                    </form><!-- Ends: .product-single -->
+
+
+                 
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                 <div class="col-lg-2 mt-sm-40"></div>
+
+
+                                 <div class="col-lg-4 mt-sm-40">
+
+
+
+         <?php echo $msg; ?>
+
+
+
+
+<?php    if (isset($_GET['done']) ){
+echo ' <div class="alert alert-success" style="font-size: initial; ">
+
+                    <p style=" font-size: x-large;color: white;background: green;border: none;padding-top: 20px;font-weight: bold;border-radius: 0 0 5px 5px; ">  <span style=" font-size: large; font-weight: 100; ">Thank You '.$_SESSION['userName'].', </span> <br><br>
+      We Received your Payment<br><br></p>      </div>'; 
+
+    $sql_paid = "UPDATE tbl_users SET userStatus='Y' WHERE userID='$_GET[order_id]'";
+    mysqli_query($connect, $sql_paid);       }    ?>
+
+<?php    if (isset($_GET['cancel']) ){
+echo '<p style=" font-size: large; color: white; "> Sorry '.$_SESSION['userName'].',  <br><br>
+                        We could not Receive your Payment<br><br></p>';   }  ?>
+
+
+
+
+
+
+   <script>
+      function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
+   </script>
+
+
+
+
+
+
+
+<?php 
+        if(isset($_GET['inactive']))
+        {       
+        $sql = "SELECT * FROM tbl_users WHERE userEmail='$_GET[e]'";
+        $result = mysqli_query($connect, $sql);
+        $pra = mysqli_fetch_array($result);
+        $num_rows = mysqli_num_rows($result);
+
+            ?>
+
+
+          
+        <?php if($pra[selected_package] == '')             {  $com =  '5000';  } ?>
+
+
+            <div class='alert alert-danger'>
+                <button class='close' data-dismiss='alert'>&times;</button>
+                <strong>Sorry <?php echo $pra['userName']; ?>!</strong> This Account is not Activated,  <br> <br>
+                        <?php if ($num_rows != '0' OR $num_rows != ''  ) {  } echo '<p style=" font-size: initial;  ">When your Email is verified, Your account will be activated. <br><br>Please check your Email.</p> '; 
+                       ?>
+            </div>
+            <?php
+        }
+        ?>
+        <?php
+        if(isset($_GET['error_x']))
+        {
+            ?>
+            <div class='alert alert-danger'>
+                <button class='close' data-dismiss='alert'>&times;</button>
+                <strong>Wrong Details!</strong> 
+            </div>
+            <?php
+        }
+        ?>
+
+
+
+
+
+
+          <div class="input-form register-form mt-60">
+            <form id="contactForm" data-toggle="validator" method="POST" action="">
+              <div class="cardify signup_form row" style="background: white; border-radius: 10px; padding: 20px;box-shadow: 12.5px 21.651px 49px 0px rgba( 58, 74, 88, .10 ); ">
+
+          <div class="section-title style-3">
+            <h3>Create Your Account!</h3>
+          </div>
+                  
+                  <br><br>
+                <div class="col-sm-6 mt-25" >
+                  <label>First Name*</label>
+                  <input type="text" class="text_field" placeholder="Enter your First Name" name="name" >
+                </div>
+                <div class="col-sm-6 mt-25" style="display: none">
+                 <label>Last Name*</label>
+                  <input type="text" class="text_field" placeholder="Enter your Last Name" name="last" >
+                </div>
+
+
+<script type="text/javascript">
+
+  $(':radio').change(function (event) {
+      var id = $(this).data('id');
+      $('#' + id).addClass('none').siblings().removeClass('none');
+  });
+</script>
+
+
+
+                <div class="col-sm-12">
+                  
+                </div>
+                
+                
+                <div class="col-sm-12 mt-25">
+                    <input type="text" class="text_field" placeholder="Enter your Mobile No" name="email" maxlength="20"  minlength="10"  onkeypress="return isNumberKey(event)" >
+
+                    
+                </div>
+                <div class="col-sm-12 mt-25">
+                  <input type="password" class="text_field" placeholder="Enter your Password" name="password" required="">
+                </div>
+
+
+                <div class="col-sm-6 mt-25" style="display: none">
+                  <label>Mobile*</label>
+                  <input type="text" class="text_field" placeholder="Enter your Mobile No" name="mobile" maxlength="20"  minlength="10"  onkeypress="return isNumberKey(event)" >
+                </div>
+
+
+                <div class="col-sm-12 mt-25">
+                  <label>Select Category*</label>
+                   <select name="grade" style=" width: 100%; height:40px; border:1px solid #ebebeb; border-radius:2px; padding:0 15px; " required=""> 
+                    <option>Tutor</option>
+                    <option>Student</option>
+                  </select>
+                </div>
+                
+
+
+                <div class="col-sm-6 mt-25" style="display: none">
+                  <label>Company or Institute  Name*</label>
+                  <input type="text" class="text_field" placeholder="Enter your Company or Institute Name" name="school"   >
+                </div>
+
+                
+                <div class="col-sm-6 mt-25" style="display: none">
+                  <label>Country*</label>
+                  <input type="text" class="text_field" placeholder="Enter your Country" name="location"   >
+                </div>
+
+
+                <div class="col-lg-6 mt-30">
+                  <input class="btn-common" type="submit" name="register_now" value="Register">
+                </div>
+              </div>
+            </form>
+
+            <!--<button class="btn-common" style="width: auto;font-weight: normal;font-size: 14px;float: right;" href="javascript:void(0);" data-toggle="modal" data-target="#login">Login</button> -->
+
+            <!--<span style="font-size: initial;float: right;margin-right: 10px;margin-top: 10px;">or</span>-->
+
+
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+                            </div>
+        </div><!-- end hero-content -->
+    </section><!-- ends: .hero-area -->
+
+
+
+
+     
+  
+
+
+     <!--footer-area start-->
+   <?php footer(); ?>
+   <!--footer-area end-->
+   
+   
+   
+   
+  
+</body>
+</html>
+
+<?php //} ?>

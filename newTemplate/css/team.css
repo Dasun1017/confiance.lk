@@ -1,0 +1,586 @@
+/* ==========================================================================
+   CONFIANCE - OUR TEAM & FACULTY STYLES
+   Design Tokens: Navy #0f2239, Crimson #c81e2b, Blue #1a56db, Grey #f4f7fb
+   ========================================================================== */
+
+:root {
+    --tm-navy-dark: #0a1727;
+    --tm-navy: #0f2239;
+    --tm-navy-light: #1e3a5f;
+    --tm-red: #c81e2b;
+    --tm-red-hover: #a51823;
+    --tm-blue: #1a56db;
+    --tm-blue-light: #e8f0fe;
+    --tm-bg-soft: #f4f7fb;
+    --tm-bg-card: #ffffff;
+    --tm-border: #e2e8f0;
+    --tm-text-main: #1e293b;
+    --tm-text-muted: #64748b;
+    --tm-text-light: #94a3b8;
+    --tm-radius: 14px;
+    --tm-radius-sm: 8px;
+    --tm-shadow: 0 4px 20px rgba(15, 34, 57, 0.07);
+    --tm-shadow-hover: 0 12px 32px rgba(15, 34, 57, 0.12);
+}
+
+.team-page {
+    background-color: #fafbfc;
+    color: var(--tm-text-main);
+    font-family: 'Albert Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+.team-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   HERO SECTION (Cohesive Clean Light Layout matching site standards)
+   -------------------------------------------------------------------------- */
+.team-hero {
+    position: relative;
+    padding: 44px 0 56px;
+    background: linear-gradient(180deg, #f3f7fc 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--tm-border);
+}
+
+.team-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--tm-text-light);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.team-breadcrumbs a {
+    color: var(--tm-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.team-breadcrumbs a:hover {
+    color: var(--tm-navy);
+    text-decoration: underline;
+}
+
+.team-breadcrumbs .separator {
+    color: var(--tm-text-light);
+    font-size: 11px;
+}
+
+.team-breadcrumbs .current {
+    color: var(--tm-text-muted);
+    font-weight: 500;
+}
+
+.team-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--tm-blue-light);
+    color: var(--tm-blue);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.team-hero-title {
+    font-size: clamp(2rem, 3.8vw, 2.75rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0 0 16px;
+    color: var(--tm-navy);
+    letter-spacing: -0.02em;
+}
+
+.team-hero-title span {
+    color: var(--tm-red);
+}
+
+.team-hero-lead {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--tm-text-muted);
+    max-width: 820px;
+    margin: 0 0 28px;
+}
+
+.team-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    border-top: 1px solid var(--tm-border);
+    padding-top: 24px;
+}
+
+.team-stat-item {
+    background: #ffffff;
+    border: 1px solid var(--tm-border);
+    border-radius: var(--tm-radius-sm);
+    padding: 14px 18px;
+    box-shadow: 0 2px 6px rgba(15, 34, 57, 0.04);
+}
+
+.team-stat-num {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--tm-navy);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.team-stat-label {
+    font-size: 0.84rem;
+    color: var(--tm-text-muted);
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION HEADERS
+   -------------------------------------------------------------------------- */
+.team-section {
+    padding: 72px 0;
+}
+
+.team-section-alt {
+    background-color: #f1f5f9;
+}
+
+.team-section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 48px;
+}
+
+.team-section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--tm-red);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.team-section-title {
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-weight: 800;
+    color: var(--tm-navy);
+    line-height: 1.25;
+    margin: 0 0 12px;
+}
+
+.team-section-subtitle {
+    font-size: 1rem;
+    color: var(--tm-text-muted);
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   EXECUTIVE LEADERSHIP CARDS (Consistent 3-Column Grid)
+   -------------------------------------------------------------------------- */
+.team-leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.team-leader-card {
+    background: var(--tm-bg-card);
+    border: 1px solid var(--tm-border);
+    border-radius: var(--tm-radius);
+    overflow: hidden;
+    box-shadow: var(--tm-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-leader-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--tm-shadow-hover);
+    border-color: rgba(26, 86, 219, 0.35);
+}
+
+.team-leader-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 4.8;
+    background: #0f2239;
+    overflow: hidden;
+}
+
+.team-leader-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.team-leader-card:hover .team-leader-img {
+    transform: scale(1.02);
+}
+
+.team-leader-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(15, 34, 57, 0.88);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.team-leader-body {
+    padding: 26px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.team-leader-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--tm-navy);
+    margin: 0 0 4px;
+    line-height: 1.3;
+}
+
+.team-leader-role {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--tm-red);
+    margin-bottom: 6px;
+}
+
+.team-leader-qual {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--tm-blue);
+    background: var(--tm-blue-light);
+    padding: 3px 10px;
+    border-radius: var(--tm-radius-sm);
+    margin-bottom: 14px;
+    align-self: flex-start;
+}
+
+.team-leader-message {
+    font-style: italic;
+    color: #334155;
+    background: #f8fafc;
+    border-left: 3px solid var(--tm-red);
+    padding: 10px 14px;
+    border-radius: 0 var(--tm-radius-sm) var(--tm-radius-sm) 0;
+    font-size: 0.88rem;
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.team-leader-bio {
+    font-size: 0.92rem;
+    color: #475569;
+    margin: 0 0 18px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.team-responsibilities-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tm-navy);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.team-responsibilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.team-responsibilities-list li {
+    font-size: 0.84rem;
+    color: #334155;
+    padding: 5px 0 5px 20px;
+    position: relative;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.team-responsibilities-list li:first-child {
+    border-top: none;
+}
+
+.team-responsibilities-list li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: var(--tm-blue);
+    font-size: 0.72rem;
+}
+
+/* --------------------------------------------------------------------------
+   FACULTY & DEPARTMENTS (Language, Vocational, Student Services)
+   -------------------------------------------------------------------------- */
+.team-faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.team-faculty-card {
+    background: #ffffff;
+    border: 1px solid var(--tm-border);
+    border-radius: var(--tm-radius);
+    padding: 24px;
+    box-shadow: var(--tm-shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.team-faculty-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(26, 86, 219, 0.4);
+}
+
+.team-faculty-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: var(--tm-blue-light);
+    color: var(--tm-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+}
+
+.team-faculty-dept {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--tm-navy);
+    margin: 0 0 8px;
+}
+
+.team-faculty-lead {
+    font-size: 0.88rem;
+    color: var(--tm-text-muted);
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.team-faculty-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+    flex-grow: 1;
+}
+
+.team-faculty-highlights li {
+    font-size: 0.85rem;
+    color: #334155;
+    padding: 4px 0 4px 18px;
+    position: relative;
+}
+
+.team-faculty-highlights li::before {
+    content: '•';
+    color: var(--tm-red);
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 4px;
+    top: -2px;
+}
+
+.team-faculty-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.team-faculty-link {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--tm-blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.team-faculty-link:hover {
+    color: var(--tm-red);
+    text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   CTA SECTION (Join Our Team / Explore Programs)
+   -------------------------------------------------------------------------- */
+.team-cta-banner {
+    background: linear-gradient(135deg, #0a1727 0%, #0f2239 100%);
+    border-radius: var(--tm-radius);
+    padding: 48px 40px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    box-shadow: 0 12px 36px rgba(15, 34, 57, 0.2);
+}
+
+.team-cta-copy {
+    max-width: 650px;
+}
+
+.team-cta-copy h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 12px;
+    line-height: 1.25;
+}
+
+.team-cta-copy p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.team-cta-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.team-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var(--tm-radius-sm);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.team-btn-primary {
+    background-color: var(--tm-red);
+    color: #ffffff;
+    border: 1px solid var(--tm-red);
+}
+
+.team-btn-primary:hover {
+    background-color: var(--tm-red-hover);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(200, 30, 43, 0.35);
+}
+
+.team-btn-secondary {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.team-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .team-leadership-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-faculty-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .team-section {
+        padding: 48px 0;
+    }
+
+    .team-leadership-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-faculty-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-cta-banner {
+        padding: 32px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .team-cta-actions {
+        width: 100%;
+    }
+
+    .team-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-container {
+        padding: 0 16px;
+    }
+
+    .team-hero {
+        padding: 40px 0 48px;
+    }
+
+    .team-hero-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .team-leader-body {
+        padding: 20px 18px 22px;
+    }
+}

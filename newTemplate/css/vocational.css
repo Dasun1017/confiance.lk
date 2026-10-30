@@ -1,0 +1,732 @@
+/* ==========================================================================
+   CONFIANCE - Vocational Training Stylesheet
+   Executive layout for Vocational Training Overview & Dedicated Course Pages
+   ========================================================================== */
+
+:root {
+  --vt-navy: #132b45;
+  --vt-navy-deep: #0b1a2b;
+  --vt-blue: #175b90;
+  --vt-blue-light: #eaf3fa;
+  --vt-blue-glow: rgba(23, 91, 144, 0.08);
+  --vt-crimson: #c63243;
+  --vt-crimson-light: #fdf2f2;
+  --vt-green: #008744;
+  --vt-green-light: #f0f9f4;
+  --vt-gold: #c48b28;
+  --vt-gold-light: #fef8ee;
+  --vt-border: #dde6f0;
+  --vt-border-subtle: #edf2f7;
+  --vt-bg-soft: #f8fafc;
+  --vt-text-main: #1e334a;
+  --vt-text-muted: #5e738a;
+  --vt-text-light: #899bb0;
+  --vt-shadow-sm: 0 2px 8px rgba(19, 43, 69, 0.05);
+  --vt-shadow-md: 0 10px 25px rgba(19, 43, 69, 0.08);
+  --vt-shadow-lg: 0 18px 45px rgba(19, 43, 69, 0.12);
+  --vt-radius-sm: 8px;
+  --vt-radius-md: 14px;
+  --vt-radius-lg: 20px;
+}
+
+/* Page base */
+.vt-page {
+  font-family: 'Albert Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--vt-text-main);
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.vt-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section
+   -------------------------------------------------------------------------- */
+.vt-hero {
+  position: relative;
+  padding: 44px 0 56px;
+  background: linear-gradient(180deg, #f3f7fc 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--vt-border-subtle);
+}
+
+.vt-breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--vt-text-light);
+}
+
+.vt-breadcrumbs a {
+  color: var(--vt-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.vt-breadcrumbs a:hover {
+  color: var(--vt-navy);
+  text-decoration: underline;
+}
+
+.vt-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.vt-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--vt-blue-light);
+  color: var(--vt-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+
+.vt-hero-title {
+  font-size: 40px;
+  line-height: 1.2;
+  font-weight: 900;
+  color: var(--vt-navy);
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.vt-hero-title span {
+  color: var(--vt-crimson);
+}
+
+.vt-hero-lead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--vt-text-muted);
+  margin: 0 0 24px;
+}
+
+.vt-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.vt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--vt-radius-sm);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.vt-btn-primary {
+  background: var(--vt-crimson);
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(198, 50, 67, 0.25);
+}
+
+.vt-btn-primary:hover {
+  background: #aa2736;
+  transform: translateY(-1px);
+}
+
+.vt-btn-secondary {
+  background: #ffffff;
+  color: var(--vt-navy) !important;
+  border-color: var(--vt-border);
+}
+
+.vt-btn-secondary:hover {
+  background: var(--vt-bg-soft);
+  color: var(--vt-blue) !important;
+}
+
+/* Hero Stats Box */
+.vt-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: var(--vt-radius-lg);
+  border: 1px solid var(--vt-border);
+  box-shadow: var(--vt-shadow-md);
+}
+
+.vt-stat-box {
+  background: var(--vt-bg-soft);
+  padding: 16px;
+  border-radius: var(--vt-radius-sm);
+  text-align: center;
+}
+
+.vt-stat-number {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--vt-blue);
+  line-height: 1.1;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.vt-stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--vt-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.vt-stat-sub {
+  font-size: 11px;
+  color: var(--vt-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Compliance Notice Banner
+   -------------------------------------------------------------------------- */
+.vt-compliance-banner {
+  margin: 32px 0 0;
+  padding: 14px 20px;
+  background: var(--vt-gold-light);
+  border: 1px solid rgba(196, 139, 40, 0.3);
+  border-radius: var(--vt-radius-md);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #78350f;
+}
+
+.vt-compliance-banner i {
+  font-size: 20px;
+  color: var(--vt-gold);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Course Grid Section (Overview Page)
+   -------------------------------------------------------------------------- */
+.vt-courses-section {
+  padding: 72px 0;
+  background: #ffffff;
+}
+
+.vt-section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 48px;
+}
+
+.vt-section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vt-blue);
+  background: var(--vt-blue-light);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.vt-section-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--vt-navy);
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+
+.vt-section-subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--vt-text-muted);
+  margin: 0;
+}
+
+.vt-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.vt-course-card {
+  background: #ffffff;
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius-md);
+  overflow: hidden;
+  box-shadow: var(--vt-shadow-sm);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.vt-course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--vt-shadow-md);
+  border-color: var(--vt-blue);
+}
+
+.vt-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #0b1a2b;
+  overflow: hidden;
+}
+
+.vt-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.vt-course-card:hover .vt-card-img {
+  transform: scale(1.06);
+}
+
+.vt-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 4px 12px;
+  background: rgba(11, 26, 43, 0.88);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.vt-card-dest {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px 10px;
+  background: #ffffff;
+  color: var(--vt-navy);
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.vt-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.vt-card-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--vt-navy);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.vt-card-copy {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vt-text-muted);
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.vt-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--vt-border-subtle);
+  font-size: 12px;
+  color: var(--vt-text-main);
+}
+
+.vt-meta-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--vt-bg-soft);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.vt-meta-pill i {
+  color: var(--vt-blue);
+}
+
+.vt-card-modules-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--vt-text-light);
+  margin-bottom: 8px;
+}
+
+.vt-card-modules {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  font-size: 13px;
+  color: var(--vt-navy);
+}
+
+.vt-card-modules li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
+
+.vt-card-modules li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--vt-green);
+  font-weight: 800;
+}
+
+.vt-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--vt-border-subtle);
+}
+
+.vt-card-cta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--vt-navy);
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: var(--vt-radius-sm);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.vt-card-cta:hover {
+  background: var(--vt-crimson);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Course Detail Page Sections
+   -------------------------------------------------------------------------- */
+.vt-detail-hero {
+  padding: 48px 0 56px;
+  background: linear-gradient(180deg, #f3f7fc 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--vt-border-subtle);
+}
+
+.vt-detail-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 44px;
+  align-items: start;
+}
+
+.vt-detail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--vt-blue-light);
+  color: var(--vt-blue);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.vt-detail-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--vt-navy);
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+
+.vt-detail-lead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--vt-text-muted);
+  margin-bottom: 24px;
+}
+
+/* Course Snapshot Card */
+.vt-snapshot-card {
+  background: #ffffff;
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius-lg);
+  padding: 28px;
+  box-shadow: var(--vt-shadow-md);
+}
+
+.vt-snapshot-header {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--vt-navy);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vt-snapshot-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.vt-snapshot-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--vt-border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.vt-snapshot-list li:last-child {
+  border-bottom: none;
+}
+
+.vt-snapshot-k {
+  color: var(--vt-text-muted);
+  font-weight: 600;
+}
+
+.vt-snapshot-v {
+  color: var(--vt-navy);
+  font-weight: 800;
+}
+
+/* Modules & Hands-On Section */
+.vt-content-section {
+  padding: 64px 0;
+  background: #ffffff;
+}
+
+.vt-content-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+}
+
+.vt-modules-card {
+  background: #ffffff;
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius-md);
+  padding: 32px;
+  box-shadow: var(--vt-shadow-sm);
+}
+
+.vt-modules-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--vt-navy);
+  margin: 0 0 16px;
+}
+
+.vt-modules-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vt-module-item {
+  padding: 16px;
+  background: var(--vt-bg-soft);
+  border-radius: var(--vt-radius-sm);
+  margin-bottom: 14px;
+  border-left: 4px solid var(--vt-blue);
+}
+
+.vt-module-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--vt-navy);
+  margin-bottom: 4px;
+}
+
+.vt-module-desc {
+  font-size: 13px;
+  color: var(--vt-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Practical Facility & Tools Card */
+.vt-tools-card {
+  background: var(--vt-bg-soft);
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius-md);
+  padding: 28px;
+}
+
+.vt-tools-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--vt-navy);
+  margin: 0 0 14px;
+}
+
+.vt-tools-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  font-size: 13px;
+}
+
+.vt-tools-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  line-height: 1.45;
+  color: var(--vt-navy);
+}
+
+.vt-tools-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--vt-green);
+  font-weight: 800;
+}
+
+/* CTA Banner */
+.vt-cta-section {
+  padding: 72px 0;
+  background: linear-gradient(135deg, #0b1a2b 0%, #17385a 100%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.vt-cta-box {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.vt-cta-box h2 {
+  font-size: 36px;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 16px;
+}
+
+.vt-cta-box p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 32px;
+}
+
+.vt-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS (320px - 1199px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .vt-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 991px) {
+  .vt-hero-grid,
+  .vt-detail-grid,
+  .vt-content-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .vt-hero-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .vt-hero,
+  .vt-detail-hero {
+    padding: 32px 0 40px;
+  }
+  .vt-hero-title,
+  .vt-detail-title {
+    font-size: 28px;
+  }
+  .vt-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .vt-hero-stats {
+    grid-template-columns: 1fr;
+  }
+  .vt-cta-box h2 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vt-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .vt-hero-actions,
+  .vt-cta-actions {
+    flex-direction: column;
+  }
+}
+

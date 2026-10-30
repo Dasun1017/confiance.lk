@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 600" width="900" height="600">
+  <rect width="900" height="600" fill="#ffffff"/>
+  <!-- Trigrams -->
+  <defs>
+    <!-- Trigram bar definitions: bar is width 100, height 16.6667 (1/12 of radius 200). We use viewBox coordinate scale -->
+    <g id="solid-bar">
+      <rect x="-50" y="-8.33" width="100" height="16.66" fill="#111111" rx="2"/>
+    </g>
+    <g id="broken-bar">
+      <rect x="-50" y="-8.33" width="46" height="16.66" fill="#111111" rx="2"/>
+      <rect x="4" y="-8.33" width="46" height="16.66" fill="#111111" rx="2"/>
+    </g>
+    <!-- 1. Geon (Heaven) - 3 solid bars -->
+    <g id="geon">
+      <use href="#solid-bar" y="-25"/>
+      <use href="#solid-bar" y="0"/>
+      <use href="#solid-bar" y="25"/>
+    </g>
+    <!-- 2. Ri (Fire) - solid, broken, solid -->
+    <g id="ri">
+      <use href="#solid-bar" y="-25"/>
+      <use href="#broken-bar" y="0"/>
+      <use href="#solid-bar" y="25"/>
+    </g>
+    <!-- 3. Gam (Water) - broken, solid, broken -->
+    <g id="gam">
+      <use href="#broken-bar" y="-25"/>
+      <use href="#solid-bar" y="0"/>
+      <use href="#broken-bar" y="25"/>
+    </g>
+    <!-- 4. Gon (Earth) - 3 broken bars -->
+    <g id="gon">
+      <use href="#broken-bar" y="-25"/>
+      <use href="#broken-bar" y="0"/>
+      <use href="#broken-bar" y="25"/>
+    </g>
+  </defs>
+
+  <!-- Rotate coordinates around center (450, 300) along diagonals -->
+  <!-- Top-left: Geon (at angle -146.31 deg or approx -146.3 deg) -->
+  <g transform="translate(450, 300) rotate(-146.31)">
+    <use href="#geon" x="0" y="-225"/>
+  </g>
+  <!-- Bottom-right: Gon (at angle 33.69 deg) -->
+  <g transform="translate(450, 300) rotate(33.69)">
+    <use href="#gon" x="0" y="-225"/>
+  </g>
+  <!-- Top-right: Gam (at angle -33.69 deg) -->
+  <g transform="translate(450, 300) rotate(-33.69)">
+    <use href="#gam" x="0" y="-225"/>
+  </g>
+  <!-- Bottom-left: Ri (at angle 146.31 deg) -->
+  <g transform="translate(450, 300) rotate(146.31)">
+    <use href="#ri" x="0" y="-225"/>
+  </g>
+
+  <!-- Taegeuk Center -->
+  <g transform="translate(450, 300) rotate(-33.69)">
+    <!-- Red top half -->
+    <path d="M -150,0 A 150,150 0 0,1 150,0 A 75,75 0 0,1 0,0 A 75,75 0 0,0 -150,0 Z" fill="#cd2e3a"/>
+    <!-- Blue bottom half -->
+    <path d="M 150,0 A 150,150 0 0,1 -150,0 A 75,75 0 0,1 0,0 A 75,75 0 0,0 150,0 Z" fill="#0047a0"/>
+  </g>
+</svg>
